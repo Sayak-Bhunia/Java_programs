@@ -31,6 +31,7 @@ class Result extends Student implements Excurr {
         System.out.println("Name = "+name);
         System.out.println("Roll = "+roll);
         System.out.println("Grade = "+grade);
+        System.out.println("Marks ="+marks);
         System.out.println("Credits = "+credit);
     }
 }
