@@ -1,39 +1,46 @@
-
-class intNum {
+class A {
     int n;
-    public intNum(int n) {
+    A(int n) {
         this.n = n;
     }
     public void display() {
-        System.out.println("integer ="+n);
+        System.out.println(n);
     }
 }
 
-class binNum extends intNum {
-    public binNum(int n) {
+class B extends A {
+    B(int n) {
         super(n);
     }
-    public void toBin() {
-        System.out.println("binary = "+Integer.toBinaryString(n));
+    public long dectobin() {
+        return f2(n);
+    }
+    public long f2(int n) {
+        if(n == 0) return 0;
+        else return n%2 + 10*f2(n/2);
     }
 }
 
-class octNum extends intNum {
-    public octNum(int n) {
+class C extends A {
+    C(int n) {
         super(n);
     }
-    public void toOct() {
-        System.out.println("octal = "+Integer.toOctalString(n));
+    public long dectooct() {
+        return f8(n);
+    }
+    public long f8(int n) {
+        if(n == 0) return 0;
+        else return n%8 + 10*f8(n/8);
     }
 }
 
 class Main {
     public static void main(String[] args) {
-        int n = 42;
-        binNum b = new binNum(n);
-        octNum o = new octNum(n);
-        System.out.println("integer = "+n);
-        b.toBin();
-        o.toOct();
+        B b = new B(12);
+        b.display();
+        System.out.println("dec to bin = "+b.dectobin());
+        C c = new C(12);
+        c.display();
+        System.out.println("dec to oct = "+c.dectooct());
     }
 }
