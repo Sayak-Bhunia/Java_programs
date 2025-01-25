@@ -1,24 +1,18 @@
 import java.util.*;
 
-class Main {
-    static class Demo {
-        int x, y;
-        Demo(int a, int b) {
-            x = a;
-            y = b;
-        }
-        boolean equals(Demo t) {
-            if(x == t.x && y == t.y) return true;
-            return false;
-        }
+class A {
+    int a, b;
+    A(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+    boolean equals(A x) {
+        if(a == x.a && b == x.b) return true;
+        return false;
     }
     public static void main(String[] args) {
-        Demo obj1 = new Demo(10, 20);
-        Demo obj2 = new Demo(4, 5);
-        System.out.println("d1 & d2 are Equals = " + obj1.equals(obj2));
+        A obj = new A(1, 2);
+        A obj1 = new A(1, 2);
+        System.out.println(obj.equals(obj1));
     }
 }
-
-
-
-
