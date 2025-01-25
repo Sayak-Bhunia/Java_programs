@@ -1,17 +1,17 @@
 import java.util.*;
 
-class Main {
+class A {
     static int c = 0;
-    public Main() {
+    public A() {
         c++;
     }
-    public static int getCount() {
+    public int helper() {
         return c;
     }
     public static void main(String[] args) {
-        Main x = new Main();
-        Main y = new Main();
-        Main z = new Main();
-        System.out.println("res = "+Main.getCount());
+        A a1 = new A();
+        A a2 = new A();
+        A a3 = new A();
+        System.out.println(a1.helper());
     }
 }
