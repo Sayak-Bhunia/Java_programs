@@ -1,139 +1,84 @@
-import java.util.Scanner;
+import java.util.*;
 
 class Stack {
-    private int mx;
     private int top;
-    private int[] stackArray;
+    private int size;
+    private int[] arr;
 
+    // Constructor to create the stack
     public Stack(int size) {
-        mx = size;
-        stackArray = new int[mx];
-        top = -1;
+        this.size = size;
+        this.top = -1;
+        this.arr = new int[size];
     }
 
-    public void push(int value) {
-        if (isFull()) {
-            System.out.println("OVERFLOW: Stack is full. Cannot push " + value);
+    // Push operation
+    public void push() {
+        if (top == size - 1) {
+            System.out.println("\nOVERFLOW\n");
         } else {
-            stackArray[++top] = value;
-            System.out.println("Pushed " + value + " to stack.");
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter value: ");
+            int val = scanner.nextInt();
+            arr[++top] = val;
         }
     }
 
-    public int pop() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty. Cannot pop.");
-            return -1;
+    // Pop operation
+    public void pop() {
+        if (top == -1) {
+            System.out.println("\nUNDERFLOW\n");
         } else {
-            return stackArray[top--];
+            top--;
         }
     }
 
-    public int peek() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty.");
-            return -1;
-        } else {
-            return stackArray[top];
-        }
-    }
-
-    public boolean isEmpty() {
-        return top == -1;
-    }
-
-    public boolean isFull() {
-        return top == mx - 1;
-    }
-
+    // Display operation
     public void display() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty.");
+        if (top == -1) {
+            System.out.println("\nUNDERFLOW\n");
         } else {
-            System.out.print("Stack elements: ");
-            for (int i = 0; i <= top; i++) {
-                System.out.print(stackArray[i] + " ");
+            for (int i = top; i >= 0; i--) {
+                System.out.println(arr[i]);
             }
-            System.out.println();
         }
+        System.out.println();
     }
-}
 
-public class StackMenuDriven {
+    // Main driver function
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Stack stack = null;
 
-        try {
-            while (true) {
-                System.out.println("Menu:");
-                System.out.println("1. Create Stack");
-                System.out.println("2. Push Element");
-                System.out.println("3. Pop Element");
-                System.out.println("4. Peek Element");
-                System.out.println("5. Display Stack");
-                System.out.println("6. Exit");
-                System.out.print("Enter your choice: ");
-                int ch = scanner.nextInt();
+        System.out.print("Enter size: ");
+        int size = scanner.nextInt();
+        Stack stack = new Stack(size);
 
-                switch (ch) {
-                    case 1:
-                        System.out.print("Enter stack size: ");
-                        int size = scanner.nextInt();
-                        stack = new Stack(size);
-                        System.out.println("Stack created with size " + size);
-                        break;
+        while (true) {
+            System.out.println("1->PUSH");
+            System.out.println("2->POP");
+            System.out.println("3->DISPLAY");
+            System.out.println("4->EXIT");
+            System.out.print("Enter your choice: ");
+            int ch = scanner.nextInt();
 
-                    case 2:
-                        if (stack == null) {
-                            System.out.println("Stack not created. Please create a stack first.");
-                        } else {
-                            System.out.print("Enter element to push: ");
-                            int value = scanner.nextInt();
-                            stack.push(value);
-                        }
-                        break;
-
-                    case 3:
-                        if (stack == null) {
-                            System.out.println("Stack not created. Please create a stack first.");
-                        } else {
-                            int poppedValue = stack.pop();
-                            if (poppedValue != -1) {
-                                System.out.println("Popped " + poppedValue + " from stack.");
-                            }
-                        }
-                        break;
-
-                    case 4:
-                        if (stack == null) {
-                            System.out.println("Stack not created. Please create a stack first.");
-                        } else {
-                            int topValue = stack.peek();
-                            if (topValue != -1) {
-                                System.out.println("Top element is " + topValue);
-                            }
-                        }
-                        break;
-
-                    case 5:
-                        if (stack == null) {
-                            System.out.println("Stack not created. Please create a stack first.");
-                        } else {
-                            stack.display();
-                        }
-                        break;
-
-                    case 6:
-                        System.out.println("Exiting...");
-                        return;
-
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                }
+            switch (ch) {
+                case 1:
+                    stack.push();
+                    break;
+                case 2:
+                    stack.pop();
+                    break;
+                case 3:
+                    stack.display();
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("INVALID CHOICE!");
             }
-        } finally {
-            scanner.close();
         }
     }
 }
