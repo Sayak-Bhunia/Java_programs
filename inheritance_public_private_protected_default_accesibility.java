@@ -1,43 +1,39 @@
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
+import java.util.*;
 
-class Parent {
-    public String s1 = "public";
-    protected String s2 = "protected";
-    String s3 = "default";
-    private String s4 = "private";
-    public void show() {
-        System.out.println("Parent");
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println(s3);
-        //System.out.println(s4);
+class A {
+    private int a = 1;
+    int b = 2;
+    protected int c = 3;
+    public int d = 4;
+    public void display() {
+        System.out.println("parent class");
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
     }
 }
 
-class Child extends Parent {
-    public void display() {
-        System.out.println("Child");
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println(s3);
-        //System.out.println(s4);
+class B extends A {
+    public void show() {
+        System.out.println("child class");
+        System.out.println("no private");
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
     }
 }
 
 class Main {
     public static void main(String[] args) {
-        Parent p = new Parent();
-        System.out.println(p.s1);
-        System.out.println(p.s2);
-        System.out.println(p.s3);
-        //System.out.println(p.s4);
-        Child c = new Child();
-        System.out.println(c.s1);
-        System.out.println(c.s2);
-        System.out.println(c.s3);
-        //System.out.println(c.s4);
-        c.display();
-        p.show();
+        A a = new A();
+        a.display();
+        B b = new B();
+        b.show();
+        System.out.println("outside class");
+        //System.out.println(a.a);
+        System.out.println(a.b);
+        System.out.println(a.c);
+        System.out.println(a.d);
     }
 }
