@@ -1,38 +1,35 @@
-import java.util.Scanner;
+import java.util.*;
 
 abstract class Shape {
     abstract double area();
 }
 
-class Rectangle extends Shape {
-    private double l; 
-    private double w; 
-    public Rectangle(double l, double w) {
-        this.l = l;
-        this.w = w;
+class Rect extends Shape {
+    double a, b;
+    Rect(double a, double b) {
+        this.a = a;
+        this.b = b;
     }
-    @Override
     double area() {
-        return l * w;
+        return a*b;
     }
 }
 
-class Circle extends Shape {
-    private double r;
-    public Circle(double r) {
-        this.r = r;
+class Circ extends Shape {
+    double a;
+    Circ(double a) {
+        this.a = a;
     }
-    @Override
     double area() {
-        return Math.PI * r * r;
+        return Math.PI*a*a;
     }
 }
 
-public class Main {
+class A {
     public static void main(String[] args) {
-        Shape r = new Rectangle(2.0, 3.0);
-        Shape c = new Circle(5.0);
-        System.out.println("Area of rectangle = " + r.area());
-        System.out.println("Area of circle = " + c.area());
+        Shape a = new Rect(2.0, 3.0);
+        Shape b = new Circ(5.0);
+        System.out.println(a.area());
+        System.out.println(b.area());
     }
 }
