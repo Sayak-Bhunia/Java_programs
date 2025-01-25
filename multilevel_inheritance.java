@@ -1,56 +1,51 @@
 class Box {
-    protected double h;
-    protected double w;
-    protected double l;
-    public Box(double h, double w, double l) {
-        this.h = h;
-        this.w = w;
-        this.l = l;
+    double a, b, c;
+    public Box(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
     public double volume() {
-        return h*w*l;
+        return a*b*c;
     }
-    @Override
     public String toString() {
-        return "Box dimensions: " + h + " x " + w + " x " + l;
+        return "Box dimensions: " + a + " x " + b + " x " + c;
     }
 }
 
-class BoxWithWeight extends Box {
-    protected double weight;
-    public BoxWithWeight(double h, double w, double l, double weight) {
-        super(h, w, l);
-        this.weight = weight;
+class BWW extends Box {
+    double wt;
+    public BWW(double a, double b, double c, double wt) {
+        super(a, b, c);
+        this.wt = wt;
     }
-    @Override
     public String toString() {
-        return super.toString() + ", Weight: " + weight + " kg";
+        return super.toString() + ", Weight: " + wt + " kg";
     }
 }
 
-class BoxWithShippingCost extends BoxWithWeight {
-    private double[] wlm;
-    private double[] cpv;
-    public BoxWithShippingCost(double h, double w, double l, double weight, double[] wlm, double[] cpv) {
-        super(h, w, l, weight);
+class BSC extends BWW {
+    double[] wlm;
+    double[] cpv;
+    public BSC(double a, double b, double c, double wt, double[] wlm, double[] cpv) {
+        super(a, b, c, wt);
         this.wlm = wlm;
         this.cpv = cpv;
     }
-    public double calculateShippingCost() {
-        double volume = volume();
+    public double caclsc() {
+        double v = volume();
         double cost = -1;
-        for (int i = 0; i < wlm.length; i++) {
-            if (weight <= wlm[i]) {
-                cost = cpv[i] * volume;
+        for(int i=0;i<wlm.length;i++) {
+            if(wt<=wlm[i]) {
+                cost = cpv[i]*v;
                 break;
             }
         }
-        return cost>=0? cost:-1;
+        return cost>=0? cost : -1;
     }
-    @Override
     public String toString() {
-        double shippingCost = calculateShippingCost();
-        return super.toString() + ", Shipping Cost: " + (shippingCost>=0? shippingCost : "Not available for this weight");
+        double cost = caclsc();
+        return super.toString() + ", Shipping Cost: " + (cost>=0? cost : "Not available for this wt");
     }
 }
 
@@ -58,7 +53,7 @@ public class Main {
     public static void main(String[] args) {
         double[] wlm = {5, 10, 20};
         double[] cpv = {0.02, 0.015, 0.01};
-        BoxWithShippingCost box = new BoxWithShippingCost(2, 3, 4, 7, wlm, cpv);
+        BSC box = new BSC(2, 3, 4, 7, wlm, cpv);
         System.out.println(box);
     }
 }
