@@ -1,19 +1,17 @@
+import java.util.*;
+
 class Complex {
-    int r;
-    int img;
-    public Complex(int r, int img) {
+    int r, img;
+    Complex(int r, int img) {
         this.r = r;
         this.img = img;
     }
     public String toString() {
-        return r + " + " + img + "i";
-    }
-    Complex() {
-        r = img = 0;
+        return r + "+" + img + "i";
     }
 }
 
-public class Main {
+class Main {
     public int sum(int a, int b) {
         return a + b;
     }
