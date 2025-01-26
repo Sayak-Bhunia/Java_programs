@@ -1,59 +1,59 @@
-class Box {
+import java.util.*;
+
+class A {
     double a, b, c;
-    public Box(double a, double b, double c) {
+    A(double a, double b, double c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
-    public double volume() {
+    public double vol() {
         return a*b*c;
     }
     public String toString() {
-        return "Box dimensions: " + a + " x " + b + " x " + c;
+        return a + "x" + b + "x" + c + " ";
     }
 }
 
-class BWW extends Box {
+class B extends A {
     double wt;
-    public BWW(double a, double b, double c, double wt) {
+    B(double a, double b, double c, double wt) {
         super(a, b, c);
         this.wt = wt;
     }
     public String toString() {
-        return super.toString() + ", Weight: " + wt + " kg";
+        return super.toString() + wt + "kg" + " ";
     }
 }
 
-class BSC extends BWW {
-    double[] wlm;
-    double[] cpv;
-    public BSC(double a, double b, double c, double wt, double[] wlm, double[] cpv) {
+class C extends B {
+    double[] wlm, cpv;
+    C(double a, double b, double c, double wt, double[] wlm, double[] cpv) {
         super(a, b, c, wt);
         this.wlm = wlm;
         this.cpv = cpv;
     }
-    public double caclsc() {
-        double v = volume();
-        double cost = -1;
+    public double cal() {
+        double v = vol(), cost = -1;
         for(int i=0;i<wlm.length;i++) {
             if(wt<=wlm[i]) {
                 cost = cpv[i]*v;
                 break;
             }
         }
-        return cost>=0? cost : -1;
+        return cost>=0? cost:-1;
     }
     public String toString() {
-        double cost = caclsc();
-        return super.toString() + ", Shipping Cost: " + (cost>=0? cost : "Not available for this wt");
+        double cost = cal();
+        return super.toString() + cost;
     }
 }
 
-public class Main {
+class Main {
     public static void main(String[] args) {
-        double[] wlm = {5, 10, 20};
-        double[] cpv = {0.02, 0.015, 0.01};
-        BSC box = new BSC(2, 3, 4, 7, wlm, cpv);
-        System.out.println(box);
+        double[] a = {5, 10, 20};
+        double[] b = {0.02, 0.015, 0.01};
+        C c = new C(2, 3, 4, 7, a, b);
+        System.out.println(c);
     }
 }
