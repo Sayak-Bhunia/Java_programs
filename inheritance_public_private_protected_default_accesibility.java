@@ -6,7 +6,7 @@ class A {
     protected int c = 3;
     public int d = 4;
     public void display() {
-        System.out.println("parent class");
+        System.out.println("class parent");
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
@@ -16,7 +16,7 @@ class A {
 
 class B extends A {
     public void show() {
-        System.out.println("child class");
+        System.out.println("class child");
         System.out.println("no private");
         System.out.println(b);
         System.out.println(c);
@@ -24,16 +24,15 @@ class B extends A {
     }
 }
 
-class Main {
+public class Mon1 {
     public static void main(String[] args) {
-        A a = new A();
-        a.display();
         B b = new B();
+        b.display();
         b.show();
         System.out.println("outside class");
-        //System.out.println(a.a);
-        System.out.println(a.b);
-        System.out.println(a.c);
-        System.out.println(a.d);
+        System.out.println("no private");
+        System.out.println(b.b);
+        System.out.println(b.c);
+        System.out.println(b.d);
     }
 }
